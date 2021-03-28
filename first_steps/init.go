@@ -4,8 +4,8 @@ import (
 	"net"
 	"time"
 
-	"websocket-example/receive"
-	"websocket-example/send"
+	"websocket-example/first_steps/receive"
+	"websocket-example/first_steps/send"
 
 	"github.com/gobwas/ws"
 )
