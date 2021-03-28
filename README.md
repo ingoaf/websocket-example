@@ -16,10 +16,10 @@ In the first step we need to establish a biderictional connection. This is a con
 ### Handle data
 In the second step, when a connection is established, we need to handle incoming (client) data. The data comes in so-called frames, which is a transmission unit. This is done in `receive/connection.go` . 
 - We create a reader, which is supposed to read frames from a connection with a server
-- It reads a frame, reads all the bytes from a frame and finally handles the previously read bytes
+- It reads a frame, reads all the bytes from a frame and finally handles the previously read byte array
 
 ### Send messages
 - Run the code with `go run init.go`
-- Client: You can install a web socket test client (chrome extension) to test your program. Paste the url ws://127.0.0.1:1337/ and click open to establish connection.
+- Client: You can install a web socket test client (chrome extension) to test your program. Paste the url ws://127.0.0.1:1337/ and click "Open" to establish connection.
 - Server: After opening the client you will receive some messages, which will be displayed in your client
 
