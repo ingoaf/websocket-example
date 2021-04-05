@@ -33,3 +33,13 @@ To understand how to handle connections gracefully, we need to dig a little deep
 - **Payload length**: To read the payload data, we need to know when to stop reading
 - **Opcode**: Defines how to interpret the payload data (important, when a connection is closed)
 - **Mask**: The specification of WebSocket protocol defines, that messages from client to server have to be encoded, while messages from server to client must not be encoded
+
+### Handle Connection
+1. Perform the handshake (listen and upgrade the connection) as described in the section "Listen for conenection"
+2. Read header
+3. With payload length information from header -> read payload
+4. Check if data is masked, unmask the data
+5. Handle received data (in our example write it back to the client and print it)
+6. If the operation code (Op Code) tells us to close the connection - close it
+
+Now if the connection is supposed to be closed from the client side, we check for the operation code and the connection is closed sucessfully. We handle the connection for each client separately, as it should be. 

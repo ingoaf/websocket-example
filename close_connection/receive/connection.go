@@ -30,11 +30,7 @@ func Connection(conn net.Conn) {
 		// RFC6455 says.
 		header.Masked = false
 
-		if err := ws.WriteHeader(conn, header); err != nil {
-			fmt.Println("can not write header", err)
-		}
-
-		if err = doSomethingWithData(payload, conn); err != nil {
+		if err = doSomethingWithData(payload, conn, header); err != nil {
 			fmt.Println("can not handle data", err)
 		}
 
@@ -44,8 +40,11 @@ func Connection(conn net.Conn) {
 	}
 }
 
-func doSomethingWithData(data []byte, conn net.Conn) error {
+func doSomethingWithData(data []byte, conn net.Conn, header ws.Header) error {
 	fmt.Println(string(data))
+	if err := ws.WriteHeader(conn, header); err != nil {
+		return err
+	}
 	_, err := conn.Write(data)
 	return err
 }
